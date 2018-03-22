@@ -50,10 +50,11 @@ class FormCheck
      * @return mixed
      */
     public function checkMoney($money,$msg = "数据"){
-        if(number_format($money) != $money){
-            return $this->result($msg."格式不正确");
-        }else{
+        //验证是否是整数
+        if(preg_match('/^[0-9]+(.[0-9]{1,2})?$/', $money)){
             return $this->result($msg."验证通过",1);
+        }else{
+            return $this->result($msg."格式不正确");
         }
     }
 
